@@ -7,8 +7,7 @@
 let obj = {
 	name: 'Kyaw Kyaw',
 	age: 20,
-	role: 'student',
-	books: [ 'Book 1', 'Book 2', 'Book 3' ]
+	books: [ '21 Pilots', 'Superman Return', 'Batman Never Come' ]
 };
 
 console.log(obj);
@@ -23,14 +22,25 @@ console.log(obj);
 console.log(obj.name);
 // Get Age
 console.log(obj.age);
-// Get Role
-console.log(obj.role);
 // Get Books Array
 console.log(obj.books);
 
 /**
 |--------------------------------------------------
-| Exercise For JavaScript Object
+| Exercise1 For JavaScript Object
+|--------------------------------------------------
+| @description Get Each Books Name
+*/
+
+// Here Get Books's Name
+
+//
+//
+//
+
+/**
+|--------------------------------------------------
+| Exercise2 For JavaScript Object
 |--------------------------------------------------
 | to make new Object
 | @description This will be person & describe below
@@ -50,7 +60,7 @@ console.log(obj.books);
 
 /**
 |--------------------------------------------------
-| Get each data From new Object
+| Exercise3 Get each data From new Object
 |--------------------------------------------------
 */
 
