@@ -7,7 +7,10 @@
 let obj = {
 	name: 'Kyaw Kyaw',
 	age: 20,
-	books: [ '21 Pilots', 'Superman Return', 'Batman Never Come' ]
+	books: [ '21 Pilots', 'Superman Return', 'Batman Never Come' ],
+	fun: () => {
+		console.log('Calling Function ... ');
+	}
 };
 
 console.log(obj);
@@ -24,6 +27,9 @@ console.log(obj.name);
 console.log(obj.age);
 // Get Books Array
 console.log(obj.books);
+
+// Call fun
+obj.fun();
 
 /**
 |--------------------------------------------------

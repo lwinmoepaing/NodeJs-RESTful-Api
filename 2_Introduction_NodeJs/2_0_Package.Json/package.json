@@ -1,0 +1,13 @@
+{
+	"name": "2_0_package.json",
+	"version": "1.0.0",
+	"description": "\" Some thing\"",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"show": "echo \"Script'll run Show \" ",
+		"start": "node index.js"
+	},
+	"author": "",
+	"license": "ISC"
+}
