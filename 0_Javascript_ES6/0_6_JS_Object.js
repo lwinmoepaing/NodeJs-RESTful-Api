@@ -69,3 +69,21 @@ console.log(obj.books);
 //
 //
 //
+
+/**
+|--------------------------------------------------
+| Destructuring Object
+|--------------------------------------------------
+*/
+
+// let obj = {
+// 	name: 'Kyaw Kyaw',
+// 	age: 20,
+// 	books: [ '21 Pilots', 'Superman Return', 'Batman Never Come' ]
+// };
+
+const { name, age, books: custom } = obj;
+
+// console.log(name);
+// console.log(age);
+// console.log(custom);
