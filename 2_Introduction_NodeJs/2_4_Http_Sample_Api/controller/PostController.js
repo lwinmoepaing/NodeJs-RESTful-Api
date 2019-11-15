@@ -1,5 +1,4 @@
 const { json, readPostsJson, saveNewPost, deletePost } = require('../utils/helpers');
-const fs = require('fs');
 
 /**
 |--------------------------------------------------
