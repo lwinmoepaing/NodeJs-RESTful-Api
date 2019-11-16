@@ -29,6 +29,10 @@ module.exports = async (req, res) => {
 	} else if (method === 'POST' && '/posts') {
 		checkValidJson(body, res);
 		PostController.CREATE_POST(res, body);
+	} else if (method === 'PUT' && isMatch('/posts/:id', url)) {
+		checkValidJson(body, res);
+		const { params } = isMatch('/posts/:id', url);
+		PostController.UPDATE_POST_BY_ID(body, res, params.id);
 	} else if (method === 'DELETE' && isMatch('/posts/:id', url)) {
 		const { params } = isMatch('/posts/:id', url);
 		PostController.DELETE_POST_BY_ID(res, params.id);

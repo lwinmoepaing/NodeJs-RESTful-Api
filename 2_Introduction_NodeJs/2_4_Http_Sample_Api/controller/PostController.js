@@ -1,4 +1,12 @@
-const { json, readPostsJson, saveNewPost, deletePost } = require('../utils/helpers');
+const {
+	json,
+	readPostsJson,
+	saveNewPost,
+	deletePost,
+	postFormat,
+	postByIdFormat,
+	updatePost
+} = require('../utils/helpers');
 
 /**
 |--------------------------------------------------
@@ -11,6 +19,7 @@ module.exports = {
 	GET_ALL_POST,
 	GET_POST_BY_ID,
 	CREATE_POST,
+	UPDATE_POST_BY_ID,
 	DELETE_POST_BY_ID,
 	NOT_FOUND
 };
@@ -37,10 +46,11 @@ function SHOW_OPTIONS(res) {
 
 async function GET_ALL_POST(res) {
 	const posts = await readPostsJson();
+
 	res.end(
 		json({
 			success: true,
-			data: posts
+			data: posts.map(postFormat)
 		})
 	);
 }
@@ -56,9 +66,71 @@ async function GET_POST_BY_ID(res, id) {
 	res.end(
 		json({
 			success: true,
-			data: posts.filter(post => post.id === +id)
+			data: postByIdFormat(posts, id)
 		})
 	);
+}
+
+/**
+|--------------------------------------------------
+| Create New Post
+|--------------------------------------------------
+*/
+
+async function CREATE_POST(res, reqBody) {
+	const { title, body, writer } = reqBody;
+	const savePost = await saveNewPost({
+		title,
+		body,
+		writer
+	});
+	if (savePost) {
+		res.end(
+			json({
+				success: true,
+				message: 'Successfully Create New Post',
+				data: [ savePost ]
+			})
+		);
+	}
+}
+
+/**
+|--------------------------------------------------
+| Update Post By Id
+|--------------------------------------------------
+*/
+async function UPDATE_POST_BY_ID(reqBody, res, id) {
+	const { title, body, writer } = reqBody;
+	const dataFromUser = {
+		title,
+		body,
+		writer
+	};
+	const updated = await updatePost(id, res, dataFromUser);
+
+	if (updated) {
+		res.end(
+			json({
+				success: true,
+				message: 'Successfully Updated'
+			})
+		);
+	} else {
+		res.writeHead(401, {
+			'Content-Type': 'application/json',
+			'X-Powered-By': 'Node js'
+		});
+
+		res.end(
+			json({
+				success: false,
+				error: {
+					message: 'Cant Updated'
+				}
+			})
+		);
+	}
 }
 
 /**
@@ -74,28 +146,6 @@ async function DELETE_POST_BY_ID(res, id) {
 			success: true
 		})
 	);
-}
-
-/**
-|--------------------------------------------------
-| Create New Post
-|--------------------------------------------------
-*/
-async function CREATE_POST(res, reqBody) {
-	const { title, body, writer } = reqBody;
-	const savePost = await saveNewPost({
-		title,
-		body,
-		writer
-	});
-	if (savePost) {
-		res.end(
-			json({
-				success: true,
-				message: 'Successfully Create New Post'
-			})
-		);
-	}
 }
 
 /**
